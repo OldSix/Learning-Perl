@@ -3,6 +3,8 @@ use 5.010;
 use strict;
 
 sub above_average{
+    # 空保护
+    if( @_ == 0) return;
     my $res = 0;
     foreach(@_){
         $res += $_;
