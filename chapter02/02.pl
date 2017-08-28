@@ -3,7 +3,15 @@
 use 5.010;
 use strict;
 
-# 每一个元素都会被去掉结尾的换行符
-chomp(my @lines = <STDIN>);
-@lines = reverse @lines;
-say "====\n@lines";
+chomp( my $num1 = <STDIN> );
+chomp( my $num2 = <STDIN> );
+
+my $res = 0; 
+my $error_msg = "wrong input, ";
+$res = $num1 * $num2, $error_msg = "", if( &is_numeric($num1) && &is_numeric($num2) );
+say $error_msg, "\$res is $res";
+
+sub is_numeric{
+    $_ = shift @_;
+    1 if( /^-?\d{1,}\.?\d{0,}$/ );
+}

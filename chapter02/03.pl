@@ -1,12 +1,16 @@
 #!/usr/bin/perl -w
-
 use 5.010;
 use strict;
 
-my @names = qw( fred barney wilma six );
-say "\@names is @names";
-chomp( my @lines = <STDIN> );
+chomp( my $str = <STDIN> );
+chomp( my $num = <STDIN> );
 
-foreach( @lines ){
-    say @names[$_ % 4] if( /^\d{1,}$/ );
+until( &is_numeric($num) ){
+    chomp( $num = <STDIN> );
+}
+
+say "res is: ", $str x $num;
+sub is_numeric{
+    $_ = shift @_;
+    1 if( /^\d{1,}$/ );
 }
